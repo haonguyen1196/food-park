@@ -1,83 +1,31 @@
 name: Laravel
-
 on:
   push:
-    branches: ["main"]
-
+    branches:
+      - main
 jobs:
-  deploy:
+  FTP-Deploy-Action:
+    name: FTP-Deploy-Action
     runs-on: ubuntu-latest
-
-    # Sử dụng SQLite cho bước build nhằm tránh lỗi kết nối DB trong quá trình chạy composer và artisan package:discover.
-    env:
-      DB_CONNECTION: sqlite
-      DB_DATABASE: database/database.sqlite
-
     steps:
-      # 👉 Setup PHP
-      - name: Setup PHP
+      - uses: actions/checkout@v2.1.0
+        with:
+          fetch-depth: 2
+      - name: Build assets
+        run: npm install && npm run build
+
+      - name: Install PHP and Composer
         uses: shivammathur/setup-php@v2
         with:
-          php-version: "8.3"
-          tools: composer, npm
+          php-version: "8.3" # Adjust to match the PHP version used by your Laravel project
+          tools: "composer"
 
-      # 👉 Clone code từ GitHub
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      # 👉 Tạo file database SQLite tạm thời cho môi trường CI/CD
-      - name: Create temporary SQLite database
-        run: |
-          mkdir -p database
-          touch database/database.sqlite
-
-      # 👉 Cài đặt Laravel dependencies
       - name: Install PHP dependencies
         run: composer install --no-dev --optimize-autoloader
 
-      # 👉 Generate APP_KEY nếu chưa có (các lệnh Artisan ở bước này sử dụng SQLite như đã cấu hình)
-      - name: Generate application key
-        run: php artisan key:generate --force
-
-      # 👉 Thiết lập quyền cho folder storage & cache
-      - name: Set directory permissions
-        run: chmod -R 777 storage bootstrap/cache
-
-      # 👉 Setup Node.js & build frontend với Vite
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+      - name: FTP-Deploy-Action
+        uses: SamKirkland/FTP-Deploy-Action@4.3.3
         with:
-          node-version: "18"
-
-      - name: Install frontend dependencies
-        run: npm install
-
-      - name: Build frontend with Vite
-        run: npm run build
-
-      # 👉 Deploy lên CPanel bằng FTP
-      - name: Deploy to CPanel via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.0
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: "./"
-          server-dir: "/food-park"
-          exclude: |
-            **/.git*
-            **/node_modules/*
-            **/storage/*
-            **/vendor/*
-            .env
-
-      # 👉 Chạy migrate database trên Hosting
-      # Ở bước này, ta sử dụng các biến môi trường từ GitHub Secrets để kết nối đến DB trên hosting.
-      - name: Run database migrations
-        run: php artisan migrate --force
-        env:
-          DB_CONNECTION: mysql
-          DB_HOST: ${{ secrets.DB_HOST }}
-          DB_DATABASE: ${{ secrets.DB_DATABASE }}
-          DB_USERNAME: ${{ secrets.DB_USERNAME }}
-          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          server: ${{ secrets.SERVER }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
