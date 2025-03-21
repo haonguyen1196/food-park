@@ -20,7 +20,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           local-dir: "./"
-          server-dir: "/food-park"
+          server-dir: "/food-park/"
           exclude: |
             **/.git*
             **/node_modules/*
