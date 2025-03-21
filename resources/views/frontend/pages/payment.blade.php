@@ -2,35 +2,35 @@
 
 @section('content')
     <!--=============================
-                                                                                                                            BREADCRUMB START
-                                                                                                                        ==============================-->
+                                                                                                                                BREADCRUMB START
+                                                                                                                            ==============================-->
     <section class="fp__breadcrumb" style="background: url({{ asset('frontend/images/counter_bg.jpg') }});">
         <div class="fp__breadcrumb_overlay">
             <div class="container">
                 <div class="fp__breadcrumb_text">
-                    <h1>payment</h1>
+                    <h1>thanh toán</h1>
                     <ul>
-                        <li><a href="index.html">home</a></li>
-                        <li><a href="javascript:;">payment</a></li>
+                        <li><a href="index.html">trang chủ</a></li>
+                        <li><a href="javascript:;">thanh toán</a></li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
     <!--=============================
-                                                                                                                            BREADCRUMB END
-                                                                                                                        ==============================-->
+                                                                                                                                BREADCRUMB END
+                                                                                                                            ==============================-->
 
 
     <!--============================
-                                                                                                                            PAYMENT PAGE START
-                                                                                                                        ==============================-->
+                                                                                                                                PAYMENT PAGE START
+                                                                                                                            ==============================-->
     <section class="fp__payment_page mt_100 xs_mt_70 mb_100 xs_mb_70">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
                     <div class="fp__payment_area">
-                        <h2>Choose your payment gateway</h2>
+                        <h2>chọn phương thức thanh toán</h2>
                         <div class="row">
                             @if (config('gatewaySettings.paypal_status') == 1)
                                 <div class="col-lg-3 col-6 col-sm-4 col-md-3 wow fadeInUp" data-wow-duration="1s">
@@ -58,11 +58,11 @@
 
                 <div class="col-lg-4 mt_25 wow fadeInUp" data-wow-duration="1s">
                     <div class="fp__cart_list_footer_button">
-                        <h6>total cart</h6>
-                        <p>subtotal: <span>{{ currencyPosition($subtotal) }}</span></p>
-                        <p>delivery: <span>{{ currencyPosition($deliveryFee) }}</span></p>
-                        <p>discount: <span>{{ currencyPosition($discount) }}</span></p>
-                        <p class="total"><span>total:</span> <span>{{ currencyPosition($grandTotal) }}</span></p>
+                        <h6>giỏ hàng</h6>
+                        <p>tổng: <span>{{ currencyPosition($subtotal) }}</span></p>
+                        <p>phí vận chuyển: <span>{{ currencyPosition($deliveryFee) }}</span></p>
+                        <p>giảm giá: <span>{{ currencyPosition($discount) }}</span></p>
+                        <p class="total"><span>tổng cộng:</span> <span>{{ currencyPosition($grandTotal) }}</span></p>
                         {{-- <form>
                             <input type="text" placeholder="Coupon Code">
                             <button type="submit">apply</button>
@@ -76,8 +76,8 @@
 
 
     <!--============================
-                                                                                                                            PAYMENT PAGE END
-                                                                                                                        ==============================-->
+                                                                                                                                PAYMENT PAGE END
+                                                                                                                            ==============================-->
 @endsection
 
 @push('scripts')

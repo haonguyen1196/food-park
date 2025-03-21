@@ -55,44 +55,44 @@
 
 @section('content')
     <!--=============================
-                                            BREADCRUMB START
-                                        ==============================-->
+                                                                BREADCRUMB START
+                                                            ==============================-->
     <section class="fp__breadcrumb" style="background: url({{ asset('frontend/images/counter_bg.jpg') }});">
         <div class="fp__breadcrumb_overlay">
             <div class="container">
                 <div class="fp__breadcrumb_text">
-                    <h1>sign up</h1>
+                    <h1>Đăng ký</h1>
                     <ul>
-                        <li><a href="index.html">home</a></li>
-                        <li><a href="#">sign up</a></li>
+                        <li><a href="index.html">trang chủ</a></li>
+                        <li><a href="#">đăng ký</a></li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
     <!--=============================
-                                            BREADCRUMB END
-                                        ==============================-->
+                                                                BREADCRUMB END
+                                                            ==============================-->
 
 
     <!--=========================
-                                            SIGN UP START
-                                        ==========================-->
+                                                                SIGN UP START
+                                                            ==========================-->
     <section class="fp__signup" style="background: url({{ asset('frontend/images/login_bg.jpg') }});">
         <div class="fp__signup_overlay pt_125 xs_pt_95 pb_100 xs_pb_70">
             <div class=" container">
                 <div class="row wow fadeInUp" data-wow-duration="1s">
                     <div class="col-xxl-5 col-xl-6 col-md-9 col-lg-7 m-auto">
                         <div class="fp__login_area">
-                            <h2>Welcome back!</h2>
-                            <p>sign up to continue</p>
+                            <h2>Chào mừng trở lại!</h2>
+                            <p>Tiếp tục đăng ký</p>
                             <form action="{{ route('register') }}" method="post">
                                 @csrf
                                 <div class="row">
                                     <div class="col-xl-12">
                                         <div class="fp__login_imput">
-                                            <label>name</label>
-                                            <input type="text" placeholder="Name" name="name"
+                                            <label>tên</label>
+                                            <input type="text" placeholder="Tên" name="name"
                                                 value="{{ old('name') }}">
                                         </div>
                                     </div>
@@ -105,26 +105,26 @@
                                     </div>
                                     <div class="col-xl-12">
                                         <div class="fp__login_imput">
-                                            <label>password</label>
-                                            <input type="password" placeholder="Password" name="password">
+                                            <label>mật khẩu</label>
+                                            <input type="password" placeholder="Mật khẩu" name="password">
                                         </div>
                                     </div>
                                     <div class="col-xl-12">
                                         <div class="fp__login_imput">
-                                            <label>confirm password</label>
-                                            <input type="password" placeholder="Confirm Password"
+                                            <label>xác nhận mật khẩu</label>
+                                            <input type="password" placeholder="Xác nhận mật khẩu"
                                                 name="password_confirmation">
                                         </div>
                                     </div>
                                     <div class="col-xl-12">
                                         <div class="fp__login_imput">
-                                            <button type="submit" class="common_btn">Register</button>
+                                            <button type="submit" class="common_btn">Đăng ký</button>
                                         </div>
                                     </div>
                                 </div>
                             </form>
-                            <p class="or"><span>or</span></p>
-                            <p class="create_account">Dont’t have an aceount ? <a href="{{ route('login') }}">login</a></p>
+                            <p class="or"><span>hoặc</span></p>
+                            <p class="create_account">Bạn đã có tài khoản <a href="{{ route('login') }}">đăng nhập</a></p>
                         </div>
                     </div>
                 </div>
@@ -132,6 +132,6 @@
         </div>
     </section>
     <!--=========================
-                                            SIGN UP END
-                                        ==========================-->
+                                                                SIGN UP END
+                                                            ==========================-->
 @endsection

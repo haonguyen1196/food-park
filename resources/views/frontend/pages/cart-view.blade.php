@@ -2,29 +2,29 @@
 
 @section('content')
     <!--=============================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                            BREADCRUMB START
-                                                                                                                                                                                                                                                                                                                                                                                                                                                        ==============================-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                        BREADCRUMB START
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ==============================-->
     <section class="fp__breadcrumb" style="background: url({{ asset('frontend/images/counter_bg.jpg') }});">
         <div class="fp__breadcrumb_overlay">
             <div class="container">
                 <div class="fp__breadcrumb_text">
-                    <h1>cart view</h1>
+                    <h1>Giỏ hàng</h1>
                     <ul>
-                        <li><a href="{{ route('home') }}">home</a></li>
-                        <li><a href="javascript:;">cart view</a></li>
+                        <li><a href="{{ route('home') }}">trang chủ</a></li>
+                        <li><a href="javascript:;">Giỏ hàng</a></li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
     <!--=============================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                            BREADCRUMB END
-                                                                                                                                                                                                                                                                                                                                                                                                                                                        ==============================-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                        BREADCRUMB END
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ==============================-->
 
 
     <!--============================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                            CART VIEW START
-                                                                                                                                                                                                                                                                                                                                                                                                                                                        ==============================-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                        CART VIEW START
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ==============================-->
     <section class="fp__cart_view mt_125 xs_mt_95 mb_100 xs_mb_70">
         <div class="container">
             <div class="row">
@@ -35,27 +35,27 @@
                                 <tbody>
                                     <tr>
                                         <th class="fp__pro_img">
-                                            Image
+                                            Hình ảnh
                                         </th>
 
                                         <th class="fp__pro_name">
-                                            details
+                                            chi tết
                                         </th>
 
                                         <th class="fp__pro_status">
-                                            price
+                                            giá
                                         </th>
 
                                         <th class="fp__pro_select">
-                                            quantity
+                                            số lượng
                                         </th>
 
                                         <th class="fp__pro_tk">
-                                            total
+                                            tổng
                                         </th>
 
                                         <th class="fp__pro_icon">
-                                            <a class="clear_all" href="javascript:;">clear all</a>
+                                            <a class="clear_all" href="javascript:;">xóa tất cả</a>
                                         </th>
                                     </tr>
                                     @foreach (Cart::content() as $item)
@@ -107,7 +107,7 @@
                                     @endforeach
                                     @if (Cart::count() == 0)
                                         <tr>
-                                            <td colspan="6" class="w-100 d-inline">Empty Cart</td>
+                                            <td colspan="6" class="w-100 d-inline">Giỏ hàng trống</td>
                                         </tr>
                                     @endif
                                 </tbody>
@@ -117,24 +117,24 @@
                 </div>
                 <div class="col-lg-4 wow fadeInUp" data-wow-duration="1s">
                     <div class="fp__cart_list_footer_button">
-                        <h6>total cart</h6>
-                        <p>subtotal: <span id="subtotal">{{ currencyPosition(cartTotal()) }}</span></p>
-                        <p>delivery: <span>$0</span></p>
-                        <p>discount: <span id="discount">{{ currencyPosition(session('coupon')['discount'] ?? 0) }}</span>
+                        <h6>Tổng giỏ hàng</h6>
+                        <p>tổng: <span id="subtotal">{{ currencyPosition(cartTotal()) }}</span></p>
+                        <p>phí vận chuyển: <span>$0</span></p>
+                        <p>giảm giá: <span id="discount">{{ currencyPosition(session('coupon')['discount'] ?? 0) }}</span>
                         </p>
-                        <p class="total"><span>total:</span> <span
+                        <p class="total"><span>tổng cộng:</span> <span
                                 id="total_final">{{ currencyPosition(session('coupon') ? cartTotal() - session('coupon')['discount'] : cartTotal()) }}</span>
                         </p>
                         <form id="coupon_form">
                             <input type="text" id="coupon_code" placeholder="Coupon Code">
-                            <button type="submit">apply</button>
+                            <button type="submit">Nhập</button>
                         </form>
                         <!-- appied coupon -->
                         <div class="coupon_card">
                             @if (session('coupon'))
                                 <div class="card mt-2">
                                     <div class="m-3">
-                                        <span><b>Applied Coupon: {{ session()->get('coupon')['code'] }}</b></span>
+                                        <span><b>Đã nhập mã giảm giá: {{ session()->get('coupon')['code'] }}</b></span>
                                         <span>
                                             <button class="remove_coupon"><i class="far fa-times"></i></button>
                                         </span>
@@ -142,15 +142,15 @@
                                 </div>
                             @endif
                         </div>
-                        <a class="common_btn" href="{{ route('checkout.index') }}">checkout</a>
+                        <a class="common_btn" href="{{ route('checkout.index') }}">thanh toán</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
     <!--============================
-                                                                                                                                                                                                                                                                                                                                                                        CART VIEW END
-                                                                                                                                                                                                                                                                                                                                                                    ==============================-->
+                                                                                                                                                                                                                                                                                                                                                                                    CART VIEW END
+                                                                                                                                                                                                                                                                                                                                                                                ==============================-->
 @endsection
 
 @push('scripts')

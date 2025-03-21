@@ -7,7 +7,7 @@
                         <i class="fas fa-burger-soda"></i>
                         <div class="text">
                             <h2 class="counter">85,000</h2>
-                            <p>customer serve</p>
+                            <p>dịch vụ khách hàng</p>
                         </div>
                     </div>
                 </div>
@@ -16,7 +16,7 @@
                         <i class="fal fa-hat-chef"></i>
                         <div class="text">
                             <h2 class="counter">120</h2>
-                            <p>experience chef</p>
+                            <p>trải nghiệm đầu bếp</p>
                         </div>
                     </div>
                 </div>
@@ -25,7 +25,7 @@
                         <i class="far fa-handshake"></i>
                         <div class="text">
                             <h2 class="counter">72,000</h2>
-                            <p>happy customer</p>
+                            <p>khách hàng hạnh phục</p>
                         </div>
                     </div>
                 </div>
@@ -34,7 +34,7 @@
                         <i class="far fa-trophy"></i>
                         <div class="text">
                             <h2 class="counter">30</h2>
-                            <p>winning award</p>
+                            <p>phần thưởng chiến thắng</p>
                         </div>
                     </div>
                 </div>

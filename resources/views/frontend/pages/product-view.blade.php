@@ -2,29 +2,29 @@
 
 @section('content')
     <!--=============================
-                                                                                                                                                                                                                                                                                                BREADCRUMB START
-                                                                                                                                                                                                                                                                                            ==============================-->
+                                                                                                                                                                                                                                                                                                                    BREADCRUMB START
+                                                                                                                                                                                                                                                                                                                ==============================-->
     <section class="fp__breadcrumb" style="background: url({{ asset('frontend/images/counter_bg.jpg') }});">
         <div class="fp__breadcrumb_overlay">
             <div class="container">
                 <div class="fp__breadcrumb_text">
-                    <h1>menu Details</h1>
+                    <h1>Chi tiết sản phẩm</h1>
                     <ul>
-                        <li><a href="{{ route('home') }}">home</a></li>
-                        <li><a href="javascrip:;">menu Details</a></li>
+                        <li><a href="{{ route('home') }}">trang chủ</a></li>
+                        <li><a href="javascrip:;">chi tiết sản phẩm</a></li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
     <!--=============================
-                                                                                                                                                                                                                                                                                                BREADCRUMB END
-                                                                                                                                                                                                                                                                                            ==============================-->
+                                                                                                                                                                                                                                                                                                                    BREADCRUMB END
+                                                                                                                                                                                                                                                                                                                ==============================-->
 
 
     <!--=============================
-                                                                                                                                                                                                                                                                                                MENU DETAILS START
-                                                                                                                                                                                                                                                                                            ==============================-->
+                                                                                                                                                                                                                                                                                                                    MENU DETAILS START
+                                                                                                                                                                                                                                                                                                                ==============================-->
     <section class="fp__menu_details mt_115 xs_mt_85 mb_95 xs_mb_65">
         <div class="container">
             <div class="row">
@@ -74,7 +74,7 @@
 
                             @if ($product->productSizes->count() > 0)
                                 <div class="details_size">
-                                    <h5>select size</h5>
+                                    <h5>chọn size</h5>
                                     @foreach ($product->productSizes as $size)
                                         <div class="form-check">
                                             <input class="form-check-input v_product_size" type="radio"
@@ -90,7 +90,7 @@
 
                             @if ($product->productOptions->count() > 0)
                                 <div class="details_extra_item">
-                                    <h5>select option <span>(optional)</span></h5>
+                                    <h5>tùy chọn <span>(optional)</span></h5>
                                     @foreach ($product->productOptions as $option)
                                         <div class="form-check">
                                             <input class="form-check-input v_product_option" type="checkbox"
@@ -105,7 +105,7 @@
                             @endif
 
                             <div class="details_quentity">
-                                <h5>select quantity</h5>
+                                <h5>chọn số lượng</h5>
                                 <div class="quentity_btn_area d-flex flex-wrapa align-items-center">
                                     <div class="quentity_btn">
                                         <button class="btn btn-danger v_decrement"><i class="fal fa-minus"></i></button>
@@ -121,9 +121,9 @@
                         </form>
                         <ul class="details_button_area d-flex flex-wrap">
                             @if ($product->stock > 0)
-                                <li><a class="common_btn v_cart_button" href="#">add to cart</a></li>
+                                <li><a class="common_btn v_cart_button" href="#">thêm vào giỏ hàng</a></li>
                             @else
-                                <li><a class="common_btn" href="javascript:;" disabled>Out of stock</a></li>
+                                <li><a class="common_btn" href="javascript:;" disabled>hết hàng</a></li>
                             @endif
                             <li><a class="wishlist" href="#"><i class="far fa-heart"></i></a></li>
                         </ul>
@@ -135,12 +135,12 @@
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
                                     data-bs-target="#pills-home" type="button" role="tab"
-                                    aria-controls="pills-home" aria-selected="true">Description</button>
+                                    aria-controls="pills-home" aria-selected="true">mô tả</button>
                             </li>
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
                                     data-bs-target="#pills-contact" type="button" role="tab"
-                                    aria-controls="pills-contact" aria-selected="false">Reviews</button>
+                                    aria-controls="pills-contact" aria-selected="false">đánh giá</button>
                             </li>
                         </ul>
                         <div class="tab-content" id="pills-tabContent">
@@ -150,12 +150,12 @@
                                     {!! $product->long_description !!}
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="pills-contact" role="tabpanel"
+                            {{-- <div class="tab-pane fade" id="pills-contact" role="tabpanel"
                                 aria-labelledby="pills-contact-tab" tabindex="0">
                                 <div class="fp__review_area">
                                     <div class="row">
                                         <div class="col-lg-8">
-                                            <h4>04 reviews</h4>
+                                            <h4>04 đánh giá</h4>
                                             <div class="fp__comment pt-0 mt_20">
                                                 <div class="fp__single_comment m-0 border-0">
                                                     <img src="images/comment_img_1.png" alt="review" class="img-fluid">
@@ -261,7 +261,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -269,7 +269,7 @@
 
             @if (count($relatedProducts) > 0)
                 <div class="fp__related_menu mt_90 xs_mt_60">
-                    <h2>related item</h2>
+                    <h2>sản phẩm liên quan</h2>
                     <div class="row related_product_slider">
 
                         @foreach ($relatedProducts as $relatedProduct)

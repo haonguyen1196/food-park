@@ -1,16 +1,16 @@
 <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
     <div class="fp_dashboard_body">
-        <h3>order list</h3>
+        <h3>danh sách đơn hàng</h3>
         <div class="fp_dashboard_order">
             <div class="table-responsive">
                 <table class="table">
                     <tbody>
                         <tr class="t_header">
-                            <th>Order</th>
-                            <th>Date</th>
-                            <th>Status</th>
-                            <th>Amount</th>
-                            <th>Action</th>
+                            <th>đơn hàng</th>
+                            <th>thời gian</th>
+                            <th>trạng thái</th>
+                            <th>tổng cộng</th>
+                            <th>hành động</th>
                         </tr>
                         @foreach ($orders as $order)
                             <tr>
@@ -35,8 +35,7 @@
                                     <h5>{{ currencyPosition($order->grand_total) }}</h5>
                                 </td>
                                 <td>
-                                    <a class="view_invoice" onclick="viewInvoice('{{ $order->id }}')">View
-                                        Details
+                                    <a class="view_invoice" onclick="viewInvoice('{{ $order->id }}')">chi tiết
                                     </a>
                                 </td>
                             </tr>
@@ -47,7 +46,7 @@
         </div>
         @foreach ($orders as $order)
             <div class="fp__invoice invoice_detail_{{ $order->id }}">
-                <a class="go_back d-print-none"><i class="fas fa-long-arrow-alt-left"></i> go back</a>
+                <a class="go_back d-print-none"><i class="fas fa-long-arrow-alt-left"></i> quay lại</a>
                 <div class="fp__track_order d-print-none">
                     <ul>
                         @if ($order->order_status == 'declined')
@@ -72,7 +71,7 @@
                 </div>
                 <div class="fp__invoice_header">
                     <div class="header_address">
-                        <h4>invoice to</h4>
+                        <h4>hóa đơn cho</h4>
                         <p>{{ @$order->userAddress->first_name }} {{ @$order->userAddress->last_name }}</p>
 
                         <p>{{ $order->address }}</p>
@@ -80,11 +79,13 @@
                         <p>{{ @$order->userAddress->email }}</p>
                     </div>
                     <div class="header_address" style="max-width: 50%">
-                        <p><b style="width: 140px">invoice no: </b><span>{{ @$order->invoice_id }}</span></p>
-                        <p><b style="width: 140px">payment status:</b> <span>{{ @$order->payment_status }}</span></p>
-                        <p><b style="width: 140px">payment method:</b> <span>{{ @$order->payment_method }}</span></p>
-                        <p><b style="width: 140px">transaction id:</b> <span>{{ @$order->transaction_id }}</span></p>
-                        <p><b style="width: 140px">date:</b>
+                        <p><b style="width: 140px">mã hóa đơn: </b><span>{{ @$order->invoice_id }}</span></p>
+                        <p><b style="width: 140px">trạng thái thanh toán:</b>
+                            <span>{{ @$order->payment_status }}</span></p>
+                        <p><b style="width: 140px">phương thức thanh toán:</b>
+                            <span>{{ @$order->payment_method }}</span></p>
+                        <p><b style="width: 140px">mã giao dịch:</b> <span>{{ @$order->transaction_id }}</span></p>
+                        <p><b style="width: 140px">thời gian:</b>
                             <span>{{ date('d-m-Y', strtotime($order->created_at)) }}</span>
                         </p>
                     </div>
@@ -95,10 +96,10 @@
                             <tbody>
                                 <tr class="border_none">
                                     <th class="sl_no">SL</th>
-                                    <th class="package">item description</th>
-                                    <th class="price">Price</th>
-                                    <th class="qnty">Quantity</th>
-                                    <th class="total">Total</th>
+                                    <th class="package">Mô tả sản phẩm</th>
+                                    <th class="price">Giá</th>
+                                    <th class="qnty">Số lượng</th>
+                                    <th class="total">Tổng</th>
                                 </tr>
                                 @foreach ($order->orderItem as $orderItem)
                                     @php
@@ -148,7 +149,7 @@
                             <tfoot>
                                 <tr>
                                     <td class="package" colspan="3">
-                                        <b>sub total</b>
+                                        <b>tổng</b>
                                     </td>
                                     <td class="qnty">
                                         <b>-</b>
@@ -159,7 +160,7 @@
                                 </tr>
                                 <tr>
                                     <td class="package coupon" colspan="3">
-                                        <b>(-) Discount coupon</b>
+                                        <b>(-) mã giảm giá</b>
                                     </td>
                                     <td class="qnty">
                                         <b></b>
@@ -170,7 +171,7 @@
                                 </tr>
                                 <tr>
                                     <td class="package coast" colspan="3">
-                                        <b>(+) Shipping Cost</b>
+                                        <b>(+) Phí vận chuyển</b>
                                     </td>
                                     <td class="qnty">
                                         <b></b>
@@ -181,7 +182,7 @@
                                 </tr>
                                 <tr>
                                     <td class="package" colspan="3">
-                                        <b>Total Paid</b>
+                                        <b>Tổng số tiền đã thanh toán</b>
                                     </td>
                                     <td class="qnty">
                                         <b></b>
@@ -197,7 +198,7 @@
                 <a class="print_btn common_btn d-print-none" href="javascript:;"
                     onclick="printInvoice('{{ $order->id }}')">
                     <i class="far fa-print"></i>
-                    print PDF
+                    in PDF
                 </a>
 
             </div>

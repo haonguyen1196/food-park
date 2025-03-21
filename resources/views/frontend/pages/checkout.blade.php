@@ -2,37 +2,37 @@
 
 @section('content')
     <!--=============================
-                                                                                                                                                                                        BREADCRUMB START
-                                                                                                                                                                                    ==============================-->
+                                                                                                                                                                                                    BREADCRUMB START
+                                                                                                                                                                                                ==============================-->
     <section class="fp__breadcrumb" style="background: url({{ asset('frontend/images/counter_bg.jpg') }});">
         <div class="fp__breadcrumb_overlay">
             <div class="container">
                 <div class="fp__breadcrumb_text">
-                    <h1>checkout</h1>
+                    <h1>Thanh toán</h1>
                     <ul>
-                        <li><a href="{{ route('home') }}">home</a></li>
-                        <li><a href="javascript:;">checkout</a></li>
+                        <li><a href="{{ route('home') }}">trang chủ</a></li>
+                        <li><a href="javascript:;">thanh toán</a></li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
     <!--=============================
-                                                                                                                                                                                        BREADCRUMB END
-                                                                                                                                                                                    ==============================-->
+                                                                                                                                                                                                    BREADCRUMB END
+                                                                                                                                                                                                ==============================-->
 
 
     <!--============================
-                                                                                                                                                                                        CHECK OUT PAGE START
-                                                                                                                                                                                    ==============================-->
+                                                                                                                                                                                                    CHECK OUT PAGE START
+                                                                                                                                                                                                ==============================-->
     <section class="fp__cart_view mt_125 xs_mt_95 mb_100 xs_mb_70">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-7 wow fadeInUp" data-wow-duration="1s">
                     <div class="fp__checkout_form">
                         <div class="fp__check_form">
-                            <h5>select address <a href="#" data-bs-toggle="modal" data-bs-target="#address_modal"><i
-                                        class="far fa-plus"></i> add address</a></h5>
+                            <h5>chọn địa chỉ <a href="#" data-bs-toggle="modal" data-bs-target="#address_modal"><i
+                                        class="far fa-plus"></i> thêm địa chỉ</a></h5>
 
                             <div class="fp__address_modal">
                                 <div class="modal fade" id="address_modal" data-bs-backdrop="static"
@@ -41,7 +41,7 @@
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="address_modalLabel">add new address
+                                                <h1 class="modal-title fs-5" id="address_modalLabel">thêm địa chỉ mới
                                                 </h1>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
@@ -54,7 +54,8 @@
                                                             <div class="col-md-12 col-lg-12 col-xl-12">
                                                                 <div class="fp__check_single_form">
                                                                     <select class="nice-select" name="delivery_area_id">
-                                                                        <option value="">select delivery area</option>
+                                                                        <option value="">chọn khu vực giao hàng
+                                                                        </option>
                                                                         @foreach ($deliveryAreas as $deliveryArea)
                                                                             <option value="{{ $deliveryArea->id }}">
                                                                                 {{ $deliveryArea->area_name }}
@@ -66,21 +67,21 @@
 
                                                             <div class="col-md-6 col-lg-12 col-xl-6">
                                                                 <div class="fp__check_single_form">
-                                                                    <input type="text" placeholder="First Name"
+                                                                    <input type="text" placeholder="Họ"
                                                                         name="first_name">
                                                                 </div>
                                                             </div>
 
                                                             <div class="col-md-6 col-lg-12 col-xl-6">
                                                                 <div class="fp__check_single_form">
-                                                                    <input type="text" placeholder="Last Name"
+                                                                    <input type="text" placeholder="Tên"
                                                                         name="last_name">
                                                                 </div>
                                                             </div>
 
                                                             <div class="col-md-6 col-lg-12 col-xl-6">
                                                                 <div class="fp__check_single_form">
-                                                                    <input type="text" placeholder="Phone *"
+                                                                    <input type="text" placeholder="Số điện thoại *"
                                                                         name="phone">
                                                                 </div>
                                                             </div>
@@ -92,7 +93,7 @@
                                                             </div>
                                                             <div class="col-md-12 col-lg-12 col-xl-12">
                                                                 <div class="fp__check_single_form">
-                                                                    <textarea cols="3" rows="4" placeholder="Address" name="address"></textarea>
+                                                                    <textarea cols="3" rows="4" placeholder="Địa chỉ" name="address"></textarea>
                                                                 </div>
                                                             </div>
                                                             <div class="col-12">
@@ -103,7 +104,7 @@
                                                                             value="home">
                                                                         <label class="form-check-label"
                                                                             for="flexRadioDefault1">
-                                                                            home
+                                                                            Nhà
                                                                         </label>
                                                                     </div>
                                                                     <div class="form-check">
@@ -112,7 +113,7 @@
                                                                             value="office">
                                                                         <label class="form-check-label"
                                                                             for="flexRadioDefault2">
-                                                                            office
+                                                                            Văn phòng
                                                                         </label>
                                                                     </div>
                                                                 </div>
@@ -120,10 +121,10 @@
                                                             <div class="col-12 d-flex">
                                                                 <button style="width: 200px" type="button"
                                                                     class="common_btn cancel_new_address"
-                                                                    data-bs-dismiss="modal">cancel</button>
+                                                                    data-bs-dismiss="modal">hủy</button>
                                                                 <button style="width: 200px; margin-left: 8px"
-                                                                    type="submit" class="common_btn">save
-                                                                    address</button>
+                                                                    type="submit" class="common_btn">lưu
+                                                                    địa chỉ</button>
                                                             </div>
                                                         </div>
                                                     </form>
@@ -240,25 +241,25 @@
 
                 <div class="col-lg-4 wow fadeInUp" data-wow-duration="1s">
                     <div id="sticky_sidebar" class="fp__cart_list_footer_button">
-                        <h6>total cart</h6>
-                        <p>subtotal: <span>{{ currencyPosition(cartTotal()) }}</span></p>
-                        <p>delivery: <span class='delivery_fee'>$00.00</span></p>
-                        <p>discount: <span>{{ currencyPosition(session()->get('coupon')['discount'] ?? 0) }}</span></p>
-                        <p class="total"><span>total:</span> <span
+                        <h6>Tổng giỏ hàng</h6>
+                        <p>tổng: <span>{{ currencyPosition(cartTotal()) }}</span></p>
+                        <p>Phí giao hàng: <span class='delivery_fee'>$00.00</span></p>
+                        <p>giảm giá: <span>{{ currencyPosition(session()->get('coupon')['discount'] ?? 0) }}</span></p>
+                        <p class="total"><span>tổng cộng:</span> <span
                                 class="grand_total">{{ currencyPosition(grandCartTotal()) }}</span></p>
                         {{-- <form>
                             <input type="text" placeholder="Coupon Code">
                             <button type="submit">apply</button>
                         </form> --}}
-                        <a class="common_btn" href="javascript:;" id="procced_btm_button">Procced to payment</a>
+                        <a class="common_btn" href="javascript:;" id="procced_btm_button">Tiến hành thanh toán</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
     <!--============================
-                                                                                                                                                                                        CHECK OUT PAGE END
-                                                                                                                                                                                    ==============================-->
+                                                                                                                                                                                                    CHECK OUT PAGE END
+                                                                                                                                                                                                ==============================-->
 @endsection
 
 @push('scripts')

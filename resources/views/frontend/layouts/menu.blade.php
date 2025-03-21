@@ -10,18 +10,18 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav m-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Home</a>
+                    <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Trang chủ</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="about.html">about</a>
+                    <a class="nav-link" href="about.html">Về chúng tôi</a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link" href="menu.html">menu</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="chefs.html">chefs</a>
-                </li>
-                <li class="nav-item">
+                </li> --}}
+                {{-- <li class="nav-item">
                     <a class="nav-link" href="#">pages <i class="far fa-angle-down"></i></a>
                     <ul class="droap_menu">
                         <li><a href="menu_details.html">menu details</a></li>
@@ -45,7 +45,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="contact.html">contact</a>
-                </li>
+                </li> --}}
             </ul>
             <ul class="menu_icon d-flex flex-wrap">
                 <li>
@@ -54,7 +54,7 @@
                         <form>
                             <span class="close_search"><i class="far fa-times"></i></span>
                             <input type="text" placeholder="Search . . .">
-                            <button type="submit">search</button>
+                            <button type="submit">Tìm kiếm</button>
                         </form>
                     </div>
                 </li>
@@ -64,7 +64,9 @@
                             class="cart_count">{{ count(Cart::content()) }}</span></a>
                 </li>
                 @php
-                    $unseenMessage = \App\Models\Chat::where('receiver_id', auth()->id())->where('seen', 0)->count();
+                    $unseenMessage = \App\Models\Chat::where('receiver_id', auth()->id())
+                        ->where('seen', 0)
+                        ->count();
                 @endphp
                 <li>
                     <a href="{{ route('dashboard', ['open' => 'message']) }}" class="  message_icon"><i
@@ -77,10 +79,10 @@
                 <li>
                     <a href="{{ route('login') }}"><i class="fas fa-user"></i></a>
                 </li>
-                <li>
-                    <a class="common_btn" href="#" data-bs-toggle="modal"
-                        data-bs-target="#staticBackdrop">reservation</a>
-                </li>
+                {{-- <li>
+                    <a class="common_btn" href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Đặt
+                        chỗ</a>
+                </li> --}}
             </ul>
         </div>
     </div>
@@ -89,7 +91,8 @@
 <div class="fp__menu_cart_area">
     <div class="fp__menu_cart_boody">
         <div class="fp__menu_cart_header">
-            <h5>total item (<span class="cart_count" style="font-size: 20px">{{ count(Cart::content()) }}</span>)</h5>
+            <h5>Tổng sản phẩm (<span class="cart_count" style="font-size: 20px">{{ count(Cart::content()) }}</span>)
+            </h5>
             <span class="close_cart"><i class="fal fa-times"></i></span>
         </div>
         <ul class="cart-content">
@@ -101,7 +104,7 @@
                     </div>
                     <div class="menu_cart_text">
                         <a class="title" href="#">{{ $cartItem->name }}</a>
-                        <p class="size">Qty: {{ $cartItem->qty }}</p>
+                        <p class="size">Số lượng: {{ $cartItem->qty }}</p>
 
                         @if (@$cartItem->options['product_size']['price'] > 0)
                             <p class="size">{{ @$cartItem->options['product_size']['name'] }}
@@ -121,9 +124,9 @@
             @endforeach
 
         </ul>
-        <p class="subtotal">sub total <span id="cart_subtotal">{{ currencyPosition(cartTotal()) }}</span></p>
-        <a class="cart_view" href="{{ route('cart-page') }}"> view cart</a>
-        <a class="checkout" href="{{ route('checkout.index') }}">checkout</a>
+        <p class="subtotal">tổng <span id="cart_subtotal">{{ currencyPosition(cartTotal()) }}</span></p>
+        <a class="cart_view" href="{{ route('cart-page') }}"> giỏ hàng</a>
+        <a class="checkout" href="{{ route('checkout.index') }}">thanh toán</a>
     </div>
 </div>
 

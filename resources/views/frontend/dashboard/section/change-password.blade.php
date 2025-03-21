@@ -1,7 +1,7 @@
 <div class="tab-pane fade" id="v-pills-change-password" role="tabpanel" aria-labelledby="v-pills-change-password-tab">
     <div class="fp_dashboard_body fp__change_password">
         <div class="fp__review_input">
-            <h3>change password</h3>
+            <h3>Đổi mật khẩu</h3>
             <div class="comment_input pt-0">
                 <form action="{{ route('profile.password.update') }}" method="post">
                     @csrf
@@ -9,22 +9,22 @@
                     <div class="row">
                         <div class="col-xl-6">
                             <div class="fp__comment_imput_single">
-                                <label>Current Password</label>
-                                <input name="current_password" type="password" placeholder="Current Password">
+                                <label>mật khẩu hiện tại</label>
+                                <input name="current_password" type="password" placeholder="Mật khẩu hiện tại">
                             </div>
                         </div>
                         <div class="col-xl-6">
                             <div class="fp__comment_imput_single">
-                                <label>New Password</label>
-                                <input name="password" type="password" placeholder="New Password">
+                                <label>Mật khẩu mới</label>
+                                <input name="password" type="password" placeholder="Mật khẩu mới">
                             </div>
                         </div>
                         <div class="col-xl-12">
                             <div class="fp__comment_imput_single">
-                                <label>confirm Password</label>
-                                <input name="password_confirmation" type="password" placeholder="Confirm Password">
+                                <label>xác nhận mật khẩu mới</label>
+                                <input name="password_confirmation" type="password" placeholder="Xác nhận mật khẩu mới">
                             </div>
-                            <button type="submit" class="common_btn mt_20">submit</button>
+                            <button type="submit" class="common_btn mt_20">gửi</button>
                         </div>
                     </div>
                 </form>

@@ -27,7 +27,7 @@
 
         @if ($product->productSizes->count() > 0)
             <div class="details_size">
-                <h5>select size</h5>
+                <h5>chọn size</h5>
                 @foreach ($product->productSizes as $size)
                     <div class="form-check">
                         <input class="form-check-input" type="radio" value="{{ $size->id }}"
@@ -42,7 +42,7 @@
 
         @if ($product->productOptions->count() > 0)
             <div class="details_extra_item">
-                <h5>select option <span>(optional)</span></h5>
+                <h5>Tùy chọn <span>(optional)</span></h5>
 
                 @foreach ($product->productOptions as $option)
                     <div class="form-check">
@@ -61,7 +61,7 @@
 
 
         <div class="details_quentity">
-            <h5>select quentity</h5>
+            <h5>chọn số lượng</h5>
             <div class="quentity_btn_area d-flex flex-wrapa align-items-center">
                 <div class="quentity_btn">
                     <button class="btn btn-danger decrement"><i class="fal fa-minus"></i></button>
@@ -78,9 +78,9 @@
         <ul class="details_button_area d-flex flex-wrap">
             {{-- <li><a class="common_btn" href="#">add to cart</a></li> --}}
             @if ($product->quantity > 0)
-                <button class="common_btn modal_add_to_cart_button" type="submit">add to cart</button>
+                <button class="common_btn modal_add_to_cart_button" type="submit">Thêm vào giỏ hàng</button>
             @else
-                <button class="common_btn" disabled>Out of stock</button>
+                <button class="common_btn" disabled>Hết hàng</button>
             @endif
         </ul>
     </div>
@@ -148,7 +148,7 @@
             let selectedSize = $("input[name='product_size']");
             if (selectedSize.length > 0) {
                 if ($("input[name='product_size']:checked").val() === undefined) {
-                    toastr.error('Please select a size');
+                    toastr.error('Vui lòng chọn size');
                     return;
                 }
 
@@ -166,7 +166,7 @@
                     $('.modal_add_to_cart_button').attr('disabled', true);
                     $('.modal_add_to_cart_button').html(
                         `<span class="spinner-border spinner-border-sm text-light" role="status" aria-hidden="true"></span>
-                        Loading...`
+                        Đang tải...`
                     );
                 },
                 success: function(response) {
@@ -179,7 +179,7 @@
                 },
                 complete: function() {
                     $('.modal_add_to_cart_button').attr('disabled', false);
-                    $('.modal_add_to_cart_button').html('add to cart');
+                    $('.modal_add_to_cart_button').html('Thêm vào giỏ hàng');
                 }
             });
         });

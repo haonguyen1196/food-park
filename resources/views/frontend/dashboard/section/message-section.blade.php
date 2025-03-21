@@ -1,7 +1,7 @@
 <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
     <div class="fp_dashboard_body fp__change_password">
         <div class="fp__message">
-            <h3>Message</h3>
+            <h3>Tin nhắn</h3>
             <div class="fp__chat_area">
                 <div class="fp__chat_body">
 
@@ -64,7 +64,7 @@
                                     <div class="fp__chating_text">
                                         <p>${$message}
                                         </p>
-                                        <span class="${msgId}">sending...</span>
+                                        <span class="${msgId}">gửi...</span>
                                     </div>
                                 </div>`;
 

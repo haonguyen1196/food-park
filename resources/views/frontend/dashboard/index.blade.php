@@ -2,29 +2,29 @@
 
 @section('content')
     <!--=============================
-                                                                                                                                                                                                                                                                                                    BREADCRUMB START
-                                                                                                                                                                                                                                                                                                ==============================-->
+                                                                                                                                                                                                                                                                                                        BREADCRUMB START
+                                                                                                                                                                                                                                                                                                    ==============================-->
     <section class="fp__breadcrumb" style="background: url({{ asset('frontend/images/counter_bg.jpg') }});">
         <div class="fp__breadcrumb_overlay">
             <div class="container">
                 <div class="fp__breadcrumb_text">
-                    <h1>user dashboard</h1>
+                    <h1>bảng điều khiển</h1>
                     <ul>
-                        <li><a href="index.html">home</a></li>
-                        <li><a href="#">dashboard</a></li>
+                        <li><a href="index.html">trang chủ</a></li>
+                        <li><a href="#">bảng điều khiển</a></li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
     <!--=============================
-                                                                                                                                                                                                                                                                                                    BREADCRUMB END
-                                                                                                                                                                                                                                                                                                ==============================-->
+                                                                                                                                                                                                                                                                                                        BREADCRUMB END
+                                                                                                                                                                                                                                                                                                    ==============================-->
 
 
     <!--=========================
-                                                                                                                                                                                                                                                                                                    DASHBOARD START
-                                                                                                                                                                                                                                                                                                ==========================-->
+                                                                                                                                                                                                                                                                                                        DASHBOARD START
+                                                                                                                                                                                                                                                                                                    ==========================-->
     <section class="fp__dashboard mt_120 xs_mt_90 mb_100 xs_mb_70">
         <div class="container">
             <div class="fp__dashboard_area">
@@ -46,22 +46,22 @@
                                 <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill"
                                     data-bs-target="#v-pills-home" type="button" role="tab"
                                     aria-controls="v-pills-home" aria-selected="true"><span><i
-                                            class="fas fa-user"></i></span> Parsonal Info</button>
+                                            class="fas fa-user"></i></span> Thông tin cá nhân</button>
 
                                 <button class="nav-link" id="v-pills-address-tab" data-bs-toggle="pill"
                                     data-bs-target="#v-pills-address" type="button" role="tab"
                                     aria-controls="v-pills-address" aria-selected="true"><span><i
-                                            class="fas fa-user"></i></span>address</button>
+                                            class="fas fa-user"></i></span>địa chỉ</button>
 
                                 <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill"
                                     data-bs-target="#v-pills-profile" type="button" role="tab"
                                     aria-controls="v-pills-profile" aria-selected="false"><span><i
-                                            class="fas fa-bags-shopping"></i></span> Order</button>
+                                            class="fas fa-bags-shopping"></i></span> Đơn hàng</button>
 
                                 <button class="nav-link" id="v-pills-wishlist-tab" data-bs-toggle="pill"
                                     data-bs-target="#v-pills-wishlist" type="button" role="tab"
                                     aria-controls="v-pills-wishlist" aria-selected="false"><span><i
-                                            class="far fa-heart"></i></span> wishlist</button>
+                                            class="far fa-heart"></i></span> danh sách yêu thích</button>
 
                                 {{-- <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill"
                                     data-bs-target="#v-pills-messages" type="button" role="tab"
@@ -75,7 +75,7 @@
                                 <button class="nav-link fp_chat_message" id="v-pills-settings-tab" data-bs-toggle="pill"
                                     data-bs-target="#v-pills-settings" type="button" role="tab"
                                     aria-controls="v-pills-settings" aria-selected="false"><span><i
-                                            class="far fa-comment-dots"></i></span> Message
+                                            class="far fa-comment-dots"></i></span> Tin nhắn
                                     <b class="unseen-message" style="display: {{ $unseenMessage > 0 ? 'block' : 'none' }}">
                                         {{ $unseenMessage > 0 ? $unseenMessage : 0 }}
                                     </b>
@@ -85,7 +85,7 @@
                                 <button class="nav-link" id="v-pills-change-password-tab" data-bs-toggle="pill"
                                     data-bs-target="#v-pills-change-password" type="button" role="tab"
                                     aria-controls="v-pills-change-password" aria-selected="false"><span><i
-                                            class="fas fa-user-lock"></i></span> Change Password </button>
+                                            class="fas fa-user-lock"></i></span> Thay đổi mật khẩu </button>
 
 
                                 <form method="POST" action="{{ route('logout') }}">
@@ -94,7 +94,7 @@
                                         onclick="event.preventDefault();
                                                             this.closest('form').submit();"
                                         class="nav-link  w-100" type="button"><span> <i class="fas fa-sign-out-alt"></i>
-                                        </span> Logout</button>
+                                        </span> đăng xuất</button>
                                 </form>
                             </div>
                         </div>
@@ -117,7 +117,7 @@
                                 <div class="tab-pane fade " id="v-pills-messages2" role="tabpanel"
                                     aria-labelledby="v-pills-messages-tab2">
                                     <div class="fp_dashboard_body">
-                                        <h3>wishlist</h3>
+                                        <h3>danh sách yêu thích</h3>
                                         <div class="fp__dashoard_wishlist">
 
                                             <div class="row">
