@@ -21,8 +21,8 @@ jobs:
         uses: actions/checkout@v4
 
       # 👉 Copy .env nếu chưa có
-      - name: Ensure .env exists
-        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+      # - name: Ensure .env exists
+      #   run: php -r "file_exists('.env') || copy('.env.example', '.env');"
 
       # 👉 Cài đặt Laravel dependencies
       - name: Install PHP dependencies
