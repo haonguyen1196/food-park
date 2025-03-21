@@ -10,38 +10,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 👉 Clone code từ GitHub
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 👉 Setup PHP & Node.js
-      - name: Setup PHP & Composer
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: "8.3"
-          tools: composer
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "18"
-
-      # 👉 Cài đặt dependencies
-      - name: Install PHP dependencies
-        run: composer install --no-dev --optimize-autoloader
-
-      - name: Install frontend dependencies
-        run: npm install
-
-      # 👉 Build frontend
-      - name: Build frontend with Vite
-        run: npm run build
-
-      # 👉 Thiết lập quyền cho storage & cache
-      - name: Set directory permissions
-        run: chmod -R 777 storage bootstrap/cache
-
-      # 👉 Deploy lên CPanel bằng FTP
       - name: Deploy to CPanel via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.0
         with:
