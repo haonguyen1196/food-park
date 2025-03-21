@@ -8,6 +8,11 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
+    # Sử dụng SQLite cho bước build nhằm tránh lỗi kết nối DB trong quá trình chạy composer và artisan package:discover.
+    env:
+      DB_CONNECTION: sqlite
+      DB_DATABASE: database/database.sqlite
+
     steps:
       # 👉 Setup PHP
       - name: Setup PHP
@@ -20,19 +25,21 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 👉 Copy .env nếu chưa có
-      # - name: Ensure .env exists
-      #   run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+      # 👉 Tạo file database SQLite tạm thời cho môi trường CI/CD
+      - name: Create temporary SQLite database
+        run: |
+          mkdir -p database
+          touch database/database.sqlite
 
       # 👉 Cài đặt Laravel dependencies
       - name: Install PHP dependencies
         run: composer install --no-dev --optimize-autoloader
 
-      # 👉 Generate APP_KEY nếu chưa có
+      # 👉 Generate APP_KEY nếu chưa có (các lệnh Artisan ở bước này sử dụng SQLite như đã cấu hình)
       - name: Generate application key
         run: php artisan key:generate --force
 
-      # 👉 Setup quyền folder storage & cache
+      # 👉 Thiết lập quyền cho folder storage & cache
       - name: Set directory permissions
         run: chmod -R 777 storage bootstrap/cache
 
@@ -64,7 +71,8 @@ jobs:
             **/vendor/*
             .env
 
-      # 👉 Chạy migrate database trên CPanel (nếu cần)
+      # 👉 Chạy migrate database trên Hosting
+      # Ở bước này, ta sử dụng các biến môi trường từ GitHub Secrets để kết nối đến DB trên hosting.
       - name: Run database migrations
         run: php artisan migrate --force
         env:
