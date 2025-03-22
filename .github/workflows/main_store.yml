@@ -1,4 +1,4 @@
-name: Laravel
+name: Deploy Laravel via SSH
 
 on:
   push:
@@ -10,68 +10,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 👉 Clone code từ GitHub
+      # 👉 Check out code từ GitHub
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 👉 Cài đặt PHP & Composer
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
+      # 👉 Thiết lập SSH & Kết nối Server
+      - name: Setup SSH & Deploy
+        uses: appleboy/ssh-action@v1.0.0
         with:
-          php-version: "8.3"
-          tools: composer
-
-      # 👉 Cài đặt Node.js
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "18"
-
-      # 👉 Cài đặt Composer dependencies
-      - name: Install PHP dependencies
-        run: composer install --no-dev --optimize-autoloader
-
-      # 👉 Cài đặt frontend dependencies
-      - name: Install frontend dependencies
-        run: npm install
-
-      # 👉 Build frontend với Vite
-      - name: Build frontend
-        run: npm run build
-
-      # 👉 Thiết lập quyền cho storage & cache
-      - name: Set directory permissions
-        run: chmod -R 777 storage bootstrap/cache
-
-      # 👉 Deploy lên CPanel bằng FTP
-      - name: Deploy to CPanel via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.0
-        with:
-          server: ${{ secrets.SERVER }}
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
-          local-dir: "./"
-          server-dir: "/food-park/"
-          exclude: |
-            **/.git*
-            **/node_modules/*
-            **/storage/*
-            **/vendor/*
-            .env
-
-      - name: Debug Environment Variables
-        run: |
-          echo "DB_HOST=${{ secrets.DB_HOST }}"
-          echo "DB_DATABASE=${{ secrets.DB_DATABASE }}"
-          echo "DB_USERNAME=${{ secrets.DB_USERNAME }}"
-          echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" # Kiểm tra xem có bị rỗng không
-
-      # 👉 Chạy migrate database trên server
-      - name: Run database migrations
-        run: php artisan migrate --force
-        env:
-          DB_CONNECTION: mysql
-          DB_HOST: ${{ secrets.DB_HOST }}
-          DB_DATABASE: ${{ secrets.DB_DATABASE }}
-          DB_USERNAME: ${{ secrets.DB_USERNAME }}
-          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd /var/www/your-project-folder
+            git pull origin main
+            composer install --no-dev --optimize-autoloader
+            npm install && npm run build
+            php artisan migrate --force
+            php artisan config:clear
+            php artisan cache:clear
+            php artisan route:cache
+            php artisan view:cache
+            sudo systemctl restart php8.3-fpm # Hoặc service apache2/nginx restart nếu cần
