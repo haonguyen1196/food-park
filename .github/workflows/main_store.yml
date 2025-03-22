@@ -59,6 +59,13 @@ jobs:
             **/vendor/*
             .env
 
+      - name: Debug Environment Variables
+        run: |
+          echo "DB_HOST=${{ secrets.DB_HOST }}"
+          echo "DB_DATABASE=${{ secrets.DB_DATABASE }}"
+          echo "DB_USERNAME=${{ secrets.DB_USERNAME }}"
+          echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" # Kiểm tra xem có bị rỗng không
+
       # 👉 Chạy migrate database trên server
       - name: Run database migrations
         run: php artisan migrate --force
