@@ -21,6 +21,7 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 2210
           script: |
             cd /home/csimgbgs/food-park
             git pull origin main
