@@ -22,7 +22,7 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd /var/www/your-project-folder
+            cd /home/csimgbgs/food-park
             git pull origin main
             composer install --no-dev --optimize-autoloader
             npm install && npm run build
