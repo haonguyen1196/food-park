@@ -13,4 +13,8 @@ export default defineConfig({
             refresh: true,
         }),
     ],
+    build: {
+        outDir: "public/build",
+        emptyOutDir: true, // Xóa thư mục build trước khi tạo lại
+    },
 });
