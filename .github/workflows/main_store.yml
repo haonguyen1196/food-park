@@ -3,7 +3,7 @@ name: Deploy to VPS
 on:
   push:
     branches:
-      - main # Chạy khi có push lên nhánh main
+      - main
 
 jobs:
   deploy:
@@ -11,45 +11,38 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup SSH Connection
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan github.com >> ~/.ssh/known_hosts
+        uses: actions/checkout@v3
 
       - name: Deploy via SSH
-        uses: appleboy/ssh-action@master
+        uses: appleboy/ssh-action@v0.1.10
         with:
-          host: ${{ secrets.SERVER_HOST }}
+          host: ${{ secrets.VPS_HOST }}
           username: linuxuser
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd /var/www/food-park
 
-            # Pull code mới nhất từ GitHub
-            git pull origin main
+            # Reset quyền nếu cần
+            sudo chown -R linuxuser:www-data .
+            sudo chmod -R 775 storage bootstrap/cache
 
-            # Cài đặt dependencies backend
+            # Pull code mới
+            git stash            # Lưu thay đổi tạm thời
+            git pull origin main # Kéo code mới về
+            git stash pop
+
+            # Cài đặt dependencies
             composer install --no-dev --optimize-autoloader
-
-            # Chạy migrate database
-            php artisan migrate --force
-
-            # Cache config, route, view để tăng tốc
-            php artisan config:cache
-            php artisan route:cache
-            php artisan view:cache
-
-            # Cài đặt dependencies frontend & build tại thư mục gốc
             npm install
             npm run build
 
-            # Set quyền cho webserver
-            sudo chown -R www-data:www-data /var/www/food-park
-            sudo chmod -R 775 /var/www/food-park/storage /var/www/food-park/bootstrap/cache
+            # Migrate database nếu cần
+            php artisan migrate --force
 
-            # Restart server
+            # Reset quyền sau deploy
+            sudo chown -R www-data:www-data storage bootstrap/cache
+            sudo chmod -R 775 storage bootstrap/cache
+
+            # Restart web server
+            sudo systemctl restart php8.1-fpm
             sudo systemctl restart nginx
