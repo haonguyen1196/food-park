@@ -3,7 +3,7 @@ name: Deploy to VPS
 on:
   push:
     branches:
-      - main
+      - main # Chạy khi có push lên nhánh main
 
 jobs:
   deploy:
@@ -11,12 +11,19 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+
+      - name: Setup SSH Connection
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
 
       - name: Deploy via SSH
-        uses: appleboy/ssh-action@v0.1.10
+        uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.VPS_HOST }}
+          host: ${{ secrets.SERVER_HOST }}
           username: linuxuser
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
