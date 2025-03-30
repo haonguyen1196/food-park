@@ -28,12 +28,28 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd /var/www/food-park
+
+            # Pull code mới nhất từ GitHub
             git pull origin main
+
+            # Cài đặt dependencies backend
             composer install --no-dev --optimize-autoloader
+
+            # Chạy migrate database
             php artisan migrate --force
+
+            # Cache config, route, view để tăng tốc
             php artisan config:cache
             php artisan route:cache
             php artisan view:cache
+
+            # Cài đặt dependencies frontend & build tại thư mục gốc
+            npm install
+            npm run build
+
+            # Set quyền cho webserver
             sudo chown -R www-data:www-data /var/www/food-park
             sudo chmod -R 775 /var/www/food-park/storage /var/www/food-park/bootstrap/cache
+
+            # Restart server
             sudo systemctl restart nginx
